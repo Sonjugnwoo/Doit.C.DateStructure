@@ -7,6 +7,7 @@
 int BinarySearch(int* arr, int search_number, int input_number);
 void SelectionSort(int* arr, int input_number);
 int BinarySearchIdx(int* arr, int search_number, int result);
+
 int main()
 {
 	//난수 시드 초기화 (매번 다른 난수 생성)
