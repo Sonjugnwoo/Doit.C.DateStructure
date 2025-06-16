@@ -8,19 +8,19 @@ int main()
     int size;   //크기 입력받을 변수
     Deck* dq;   // 구조체 변수 
 
-    //원형 큐 
+    //덱 
     //메모리 동적 할당 및 입력 
-    printf("큐 의 용량 설정 : ");
+    printf("덱 의 용량 설정 : ");
     scanf("%d", &size);
     dq = (Deck*)malloc(sizeof(Deck));
     if (dq == NULL) {
-        printf("큐 구조체 메모리 할당 실패\n");
+        printf("덱 구조체 메모리 할당 실패\n");
         return -1;
     }
 
     //배열 초기화 함수 
     if (Initialize(dq, size) == -1) {
-        printf("큐 초기화 실패\n");
+        printf("덱 초기화 실패\n");
         free(dq);
         return -1;
     }
@@ -134,7 +134,7 @@ int main()
     return 0;
 }
 
-// 큐 초기화 함수
+// 덱 초기화 함수
 int Initialize(Deck* dq, int max)
 {
     dq->num = 0;       // 현재 데이터 개수 0
