@@ -1,152 +1,152 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <stdlib.h>
-#include "IntDeck.h"   //»ç¿ëÀÚ Á¤ÀÇ Å¥ Çì´õÆÄÀÏ
+#include "IntDeck.h"   //ì‚¬ìš©ì ì •ì˜ ë± í—¤ë”íŒŒì¼
 
 int main()
 {
-    int size;   //Å©±â ÀÔ·Â¹ŞÀ» º¯¼ö
-    Deck* dq;   // ±¸Á¶Ã¼ º¯¼ö 
+    int size;   //í¬ê¸° ì…ë ¥ë°›ì„ ë³€ìˆ˜
+    Deck* dq;   // êµ¬ì¡°ì²´ ë³€ìˆ˜ 
 
-    //¿øÇü Å¥ 
-    //¸Ş¸ğ¸® µ¿Àû ÇÒ´ç ¹× ÀÔ·Â 
-    printf("Å¥ ÀÇ ¿ë·® ¼³Á¤ : ");
+    //ë± 
+    //ë©”ëª¨ë¦¬ ë™ì  í• ë‹¹ ë° ì…ë ¥ 
+    printf("ë± ì˜ ìš©ëŸ‰ ì„¤ì • : ");
     scanf("%d", &size);
     dq = (Deck*)malloc(sizeof(Deck));
     if (dq == NULL) {
-        printf("Å¥ ±¸Á¶Ã¼ ¸Ş¸ğ¸® ÇÒ´ç ½ÇÆĞ\n");
+        printf("ë± êµ¬ì¡°ì²´ ë©”ëª¨ë¦¬ í• ë‹¹ ì‹¤íŒ¨\n");
         return -1;
     }
 
-    //¹è¿­ ÃÊ±âÈ­ ÇÔ¼ö 
+    //ë°°ì—´ ì´ˆê¸°í™” í•¨ìˆ˜ 
     if (Initialize(dq, size) == -1) {
-        printf("Å¥ ÃÊ±âÈ­ ½ÇÆĞ\n");
+        printf("ë± ì´ˆê¸°í™” ì‹¤íŒ¨\n");
         free(dq);
         return -1;
     }
 
-    // ¸Ş´º ¹İº¹ ½ÇÇà
+    // ë©”ë‰´ ë°˜ë³µ ì‹¤í–‰
     while (1)
     {
         int menu, data, which;
-        printf("ÇöÀç µ¥ÀÌÅÍ ¼ö : %d / %d\n", Size(dq), Capacity(dq));
+        printf("í˜„ì¬ ë°ì´í„° ìˆ˜ : %d / %d\n", Size(dq), Capacity(dq));
         printf("1 : Enque 2 : Deque 3 : Peek 4 : Print 5 : Search\n");
         printf("6 : Capacity 7 : Size 8 : Empty  9 : Full 10 : Clear\n0 : END\n");
         scanf("%d", &menu);
-        // ¾Õ/µÚ ¼±ÅÃÀÌ ÇÊ¿äÇÑ ¸Ş´º¿¡¼­¸¸ which ÀÔ·Â
+        // ì•/ë’¤ ì„ íƒì´ í•„ìš”í•œ ë©”ë‰´ì—ì„œë§Œ which ì…ë ¥
         if (menu == 1 || menu == 2 || menu == 3 )
         {
-            printf("0 : ¾Õ Å¥ 1 : µÚ Å¥\n");
+            printf("0 : ì• í 1 : ë’¤ í\n");
             scanf("%d", &which);
         }
         switch (menu)
         {
         case 1:
-            // Enque : µ¦¿¡ µ¥ÀÌÅÍ Ãß°¡
-            printf("µ¥ÀÌÅÍ : ");
+            // Enque : ë±ì— ë°ì´í„° ì¶”ê°€
+            printf("ë°ì´í„° : ");
             scanf("%d", &data);
 
             if (Enque(dq, which, data) == -1)
-                printf("ÀÎÅ¥ ½ÇÆĞ\n");
+                printf("ì¸í ì‹¤íŒ¨\n");
             else
-                printf("ÀÎÅ¥ ¼º°ø\n");
+                printf("ì¸í ì„±ê³µ\n");
             break;
 
         case 2:
-            // Deque : µ¦¿¡¼­ µ¥ÀÌÅÍ ²¨³»±â
+            // Deque : ë±ì—ì„œ ë°ì´í„° êº¼ë‚´ê¸°
             if (Deque(dq, which, &data) == -1)
-                printf("µğÅ¥ ½ÇÆĞ\n");
+                printf("ë””í ì‹¤íŒ¨\n");
             else
-                printf("µğÅ¥ µ¥ÀÌÅÍ : %d\n", data);
+                printf("ë””í ë°ì´í„° : %d\n", data);
             break;
 
         case 3:
-            // Peek : µ¦ÀÇ ¾Õ/µÚ µ¥ÀÌÅÍ È®ÀÎ(»èÁ¦X)
+            // Peek : ë±ì˜ ì•/ë’¤ ë°ì´í„° í™•ì¸(ì‚­ì œX)
             if (Peek(dq, which,&data) == -1)
-                printf("ÇÇÅ© ½ÇÆĞ\n");
+                printf("í”¼í¬ ì‹¤íŒ¨\n");
             else
-                printf("ÇÇÅ© µ¥ÀÌÅÍ : %d \n", data);
+                printf("í”¼í¬ ë°ì´í„° : %d \n", data);
             break;
 
         case 4:
-            // Print : µ¦ÀÇ ¸ğµç µ¥ÀÌÅÍ Ãâ·Â
+            // Print : ë±ì˜ ëª¨ë“  ë°ì´í„° ì¶œë ¥
             Print(dq);
             break;
 
         case 5:
         {
-            // Search : µ¦¿¡¼­ Æ¯Á¤ µ¥ÀÌÅÍ °Ë»ö
+            // Search : ë±ì—ì„œ íŠ¹ì • ë°ì´í„° ê²€ìƒ‰
             int search;
-            printf("°Ë»ö µ¥ÀÌÅÍ : ");
+            printf("ê²€ìƒ‰ ë°ì´í„° : ");
             scanf("%d", &search);
 
-            int idx = Search(dq, search);     // ½ÇÁ¦ ¹è¿­ ÀÎµ¦½º ¹İÈ¯
-            int idx_2 = Search2(dq, search);  // front·ÎºÎÅÍÀÇ »ó´ëÀû À§Ä¡ ¹İÈ¯
+            int idx = Search(dq, search);     // ì‹¤ì œ ë°°ì—´ ì¸ë±ìŠ¤ ë°˜í™˜
+            int idx_2 = Search2(dq, search);  // frontë¡œë¶€í„°ì˜ ìƒëŒ€ì  ìœ„ì¹˜ ë°˜í™˜
 
             if (idx != -1 && idx_2 != -1)
-                printf("°Ë»ö °á°ú: %d (ÀÎµ¦½º: %d),¸Ç¾Õ ¿ä¼Ò·ÎºÎÅÍ %d¿¡ À§Ä¡\n", search, idx, idx_2);
+                printf("ê²€ìƒ‰ ê²°ê³¼: %d (ì¸ë±ìŠ¤: %d),ë§¨ì• ìš”ì†Œë¡œë¶€í„° %dì— ìœ„ì¹˜\n", search, idx, idx_2);
             else
-                printf("°Ë»ö °á°ú X\n");
+                printf("ê²€ìƒ‰ ê²°ê³¼ X\n");
             break;
         }
         case 6:
-            // Capacity : µ¦ÀÇ ÃÖ´ë ÀúÀå ¿ë·® Ãâ·Â
-            printf("StackÀÇ ÃÖ´ë ¿ë·® : %d \n", Capacity(dq));
+            // Capacity : ë±ì˜ ìµœëŒ€ ì €ì¥ ìš©ëŸ‰ ì¶œë ¥
+            printf("Stackì˜ ìµœëŒ€ ìš©ëŸ‰ : %d \n", Capacity(dq));
             break;
         case 7:
-            // Size : ÇöÀç µ¦¿¡ ÀúÀåµÈ µ¥ÀÌÅÍ °³¼ö Ãâ·Â
-            printf("ÇöÀç ÀúÀåµÈ µ¥ÀÌÅÍ : %d°³ \n", Size(dq));
+            // Size : í˜„ì¬ ë±ì— ì €ì¥ëœ ë°ì´í„° ê°œìˆ˜ ì¶œë ¥
+            printf("í˜„ì¬ ì €ì¥ëœ ë°ì´í„° : %dê°œ \n", Size(dq));
             break;
 
         case 8:
-            // Empty : µ¦ÀÌ ºñ¾îÀÖ´ÂÁö È®ÀÎ
+            // Empty : ë±ì´ ë¹„ì–´ìˆëŠ”ì§€ í™•ì¸
             if (IsEmpty(dq) == 1)
-                printf("ºñ¾î ÀÖ½À´Ï´Ù.\n");
+                printf("ë¹„ì–´ ìˆìŠµë‹ˆë‹¤.\n");
             else
-                printf("µ¥ÀÌÅÍ°¡ ÀÖ½À´Ï´Ù.\n");
+                printf("ë°ì´í„°ê°€ ìˆìŠµë‹ˆë‹¤.\n");
             break;
 
         case 9:
-            // Full : µ¦ÀÌ °¡µæ Ã¡´ÂÁö È®ÀÎ
+            // Full : ë±ì´ ê°€ë“ ì°¼ëŠ”ì§€ í™•ì¸
             if (IsFull(dq) == 1)
-                printf("°ø°£ÀÌ ¾ø½À´Ï´Ù.\n");
+                printf("ê³µê°„ì´ ì—†ìŠµë‹ˆë‹¤.\n");
             else
-                printf("°ø°£ÀÌ ÀÖ½À´Ï´Ù.\n");
+                printf("ê³µê°„ì´ ìˆìŠµë‹ˆë‹¤.\n");
             break;
 
         case 10:
-            // Clear : µ¦ ÃÊ±âÈ­(ºñ¿ì±â)
+            // Clear : ë± ì´ˆê¸°í™”(ë¹„ìš°ê¸°)
             Clear(dq);
-            printf("ÃÊ±âÈ­ ¿Ï·á\n");
-            printf("Á© ¹ØÀÇ °ª : NULL\n");
+            printf("ì´ˆê¸°í™” ì™„ë£Œ\n");
+            printf("ì ¤ ë°‘ì˜ ê°’ : NULL\n");
             break;
 
         case 0:
-            // Terminate : ¸Ş¸ğ¸® ÇØÁ¦ ¹× Á¾·á
-            printf("½Ã½ºÅÛ Á¾·á\n");
+            // Terminate : ë©”ëª¨ë¦¬ í•´ì œ ë° ì¢…ë£Œ
+            printf("ì‹œìŠ¤í…œ ì¢…ë£Œ\n");
             Terminate(dq);
             return 0;
         default:
-            printf("Àß¸øµÈ ¸Ş´ºÀÔ´Ï´Ù.\n");
+            printf("ì˜ëª»ëœ ë©”ë‰´ì…ë‹ˆë‹¤.\n");
             break;
         }
     }
     return 0;
 }
 
-// Å¥ ÃÊ±âÈ­ ÇÔ¼ö
+// ë± ì´ˆê¸°í™” í•¨ìˆ˜
 int Initialize(Deck* dq, int max)
 {
-    dq->num = 0;       // ÇöÀç µ¥ÀÌÅÍ °³¼ö 0
-    dq->front = 0;     // front ÀÎµ¦½º ÃÊ±âÈ­
-    dq->rear =0;       // rear ÀÎµ¦½º ÃÊ±âÈ­
+    dq->num = 0;       // í˜„ì¬ ë°ì´í„° ê°œìˆ˜ 0
+    dq->front = 0;     // front ì¸ë±ìŠ¤ ì´ˆê¸°í™”
+    dq->rear =0;       // rear ì¸ë±ìŠ¤ ì´ˆê¸°í™”
 
-     // ¹è¿­ µ¿Àû ÇÒ´ç
+     // ë°°ì—´ ë™ì  í• ë‹¹
     dq->que = (int*)malloc(sizeof(int) * max);
     if (dq->que == NULL)
     {
         dq->max = 0;
-        printf("¸Ş¸ğ¸® ÇÒ´ç ½ÇÆĞ");
+        printf("ë©”ëª¨ë¦¬ í• ë‹¹ ì‹¤íŒ¨");
         return -1;
     }
     dq->max = max;
@@ -154,7 +154,7 @@ int Initialize(Deck* dq, int max)
 }
 int Enque(Deck* dq,int which, int x)
 {
-    if (dq->num == dq->max)   // µ¦ÀÌ °¡µæ Ã¡À¸¸é ½ÇÆĞ
+    if (dq->num == dq->max)   // ë±ì´ ê°€ë“ ì°¼ìœ¼ë©´ ì‹¤íŒ¨
         return-1;
 
     if (which == 0) 
@@ -167,32 +167,32 @@ int Enque(Deck* dq,int which, int x)
         dq->rear = (dq->rear + 1 ) % dq->max;
         dq->que[dq->rear] = x;
     }
-    dq->num++;     // µ¥ÀÌÅÍ °³¼ö Áõ°¡
+    dq->num++;     // ë°ì´í„° ê°œìˆ˜ ì¦ê°€
     return 0;
 }
 
 int Deque(Deck* dq, int which, int* x)
 {
-    if (dq->num == 0) // µ¦ÀÌ ºñ¾úÀ¸¸é ½ÇÆĞ
+    if (dq->num == 0) // ë±ì´ ë¹„ì—ˆìœ¼ë©´ ì‹¤íŒ¨
         return -1;
 
-    if (which == 0) // ¾Õ¿¡¼­ »èÁ¦
+    if (which == 0) // ì•ì—ì„œ ì‚­ì œ
     {
         *x = dq->que[dq->front];
         dq->front = (dq->front + 1) % dq->max;
     }
-    else // µÚ¿¡¼­ »èÁ¦
+    else // ë’¤ì—ì„œ ì‚­ì œ
     {
         *x = dq->que[dq->rear];
         dq->rear = (dq->rear - 1 + dq->max) % dq->max;
     }
-    dq->num--; // µ¥ÀÌÅÍ °³¼ö °¨¼Ò
+    dq->num--; // ë°ì´í„° ê°œìˆ˜ ê°ì†Œ
     return 0;
 }
 int Peek(const Deck* dq,int which, int* x)
 {
     if (dq->num == 0)
-        return -1;        // µ¦ÀÌ ºñ¾úÀ¸¸é ½ÇÆĞ
+        return -1;        // ë±ì´ ë¹„ì—ˆìœ¼ë©´ ì‹¤íŒ¨
     
     if (which == 0)
     {
