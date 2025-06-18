@@ -7,6 +7,7 @@ void RecurMemo(int input_number);
 void RecurUp(int input_number);
 void RecurDown(int input_number);
 
+//정적 변수 
 static char memo[128][1024];
 int count;
 
@@ -77,6 +78,7 @@ void RecurMemo(int input_number)
 			strcpy(memo[input_number + 1], "");		 // 기저 조건: 빈 문자열 저장
 		}
 }
+
 //전위 순회 함수
 void RecurDown(int input_number)
 {
@@ -89,6 +91,7 @@ void RecurDown(int input_number)
 	}
 
 }
+
 //후위 순회 함수
 void RecurUp(int input_number)
 {
