@@ -60,6 +60,7 @@ void BubbleSort(int* arr, int size)
 	}
 
 	//결과 출력
+	printf("오름 차순 정렬 : ");
 	for (int i = 0; i < size; i++)
 		printf("%d ", arr[i]);
 }

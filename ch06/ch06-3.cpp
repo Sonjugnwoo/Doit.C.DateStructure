@@ -4,6 +4,7 @@
 
 //함수 원형 
 void BubbleSort(int* number, int size);
+int IsSorted(int* arr, int size);
 
 int main()
 {
@@ -46,28 +47,14 @@ int main()
 //버블 정렬 함수 
 void BubbleSort(int* arr, int size)
 {
-	int compare = 0;	// 비교 횟수 카운트
-	int change = 0;		// 교환 횟수 카운트
-
+	int change;
 	 // 버블 정렬의 패스(회차) 반복
 	for (int i = 0; i < size - 1; i++)
 	{
-		printf("패스 %d : \n", i + 1);
-
+		change = 0;
 		// 각 패스에서 뒤에서부터 앞으로 비교
 		for (int j = size - 1; j > i; j--)
 		{
-			// 배열 상태 및 비교 상황 출력
-			for (int k = 0; k < size - 1; k++)
-			{
-				// 각 원소 출력 후, 비교 위치(k == j-1)면 + 또는 -, 아니면 공백 출력
-				printf("%3d %c", arr[k], (k != j - 1) ? ' ' : (arr[j - 1] > arr[j]) ? '+' : '-');
-			}
-			printf("%3d", arr[size - 1]);	 // 마지막 원소 출력
-
-			compare++;
-			printf("\n");
-
 			// 실제 값 비교 후, 필요시 교환
 			if (arr[j - 1] > arr[j])
 			{
@@ -77,14 +64,32 @@ void BubbleSort(int* arr, int size)
 				change++;
 			}
 		}
-		
+		// 교환이 한 번도 없으면 이미 정렬된 상태이므로 조기 종료
+		if (change == 0)break;
 	}
 
 	printf("\n");
 	//결과 출력
-	printf("비교 횟수 : %d\n",compare);
-	printf("교환 횟수 : %d\n",change);
-	printf("오름 차순 정렬 : ");
-	for (int i = 0; i < size; i++)
-		printf("%d ", arr[i]);
+	if (IsSorted(arr, size) == 1)
+	{
+		printf("오름 차순 정렬 : ");
+		for (int i = 0; i < size; i++)
+			printf("%d ", arr[i]);
+	}
+	else
+	{
+		printf("정렬 X");
+		return ;
+	}
+}
+
+int IsSorted(int* arr, int size)
+{
+	for(int i = 0 ; i<size-1;i++)
+	{
+		if (arr[i] > arr[i + 1])
+			return 0;	// 정렬 안 됨
+	}
+	return 1;	// 정렬됨
+
 }

@@ -77,13 +77,14 @@ void BubbleSort(int* arr, int size)
 				change++;
 			}
 		}
-		
+		// 교환이 한 번도 없으면 이미 정렬된 상태이므로 조기 종료
+		if (change == 0)break;
 	}
 
 	printf("\n");
 	//결과 출력
-	printf("비교 횟수 : %d\n",compare);
-	printf("교환 횟수 : %d\n",change);
+	printf("비교 횟수 : %d\n", compare);
+	printf("교환 횟수 : %d\n", change);
 	printf("오름 차순 정렬 : ");
 	for (int i = 0; i < size; i++)
 		printf("%d ", arr[i]);
