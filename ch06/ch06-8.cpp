@@ -16,7 +16,7 @@ int main()
 // 삽입 정렬 함수 정의
 void InsertionSort(int* arr, int size)
 {
-	for (int i = 1; i < size ; i++)	// i는 1부터 size-1까지 (두 번째 원소부터 시작)
+	for (int i = 1; i < size; i++)	// i는 1부터 size-1까지 (두 번째 원소부터 시작)
 	{
 		int key = arr[i];	  // 현재 삽입할 값
 		int j = 0;
@@ -31,7 +31,7 @@ void InsertionSort(int* arr, int size)
 		// 삽입 위치를 찾으며 한 칸씩 뒤로 이동
 		for (j = i - 1; j >= 0 && arr[j] > key; j--)
 		{
-				arr[j + 1] = arr[j];		
+			arr[j + 1] = arr[j];
 		}
 		arr[j + 1] = key;	 // key를 올바른 위치에 삽입
 
