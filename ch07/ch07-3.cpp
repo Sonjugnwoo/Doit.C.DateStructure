@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include<string.h>
 
+//함수 원형
 int Strchr(char* str, char c);
 char* Strrchr(char* str, char c);
 
