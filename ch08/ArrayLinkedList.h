@@ -1,28 +1,38 @@
-#ifndef ___LinkedList
-#define ___LinkedList
+
+#ifndef ___ArrayLinkedList
+#define ___ArrayLinkedList
+
+
+#define Null    -1          // 빈 커서
+
+typedef int Index;          // 커서의 자료형
 
 /*--- 노드 ---*/
-typedef struct Node
-{
-    int data;
-    struct Node* nextnode;
+typedef struct {
+    int data;            // 데이터
+    Index next;             // 다음 커서
+    Index Dnext;            // 프리 리스트의 다음 커서
 } Node;
 
 /*--- 선형 리스트 ---*/
 typedef struct {
-    Node* head;     // 머리 포인터（머리 노드를 가리키는 포인터）
-    Node* crnt;     // 선택 포인터（선택한 노드를 가리키는 포인터）
+    Node* arr;                // 리스트 본체(배열)
+    Index head;             // 머리 커서
+    Index max;              // 사용 중인 꼬리 레코드
+    Index deleted;          // 프리 리스트의 머리 커서
+    Index crnt;             // 선택한 커서
 } List;
 
+
 /*--- 선형 리스트를 초기화 ---*/
-void Initialize(List* list);
+void Initialize(List* list,int size);
 
 /*--- 함수 compare로 x와 같은 노드를 검색 ---*/
-Node* Search(List* list, const int data,
-    int compare(const int *x, const int * y));
+Index Search(List* list, const int* x,
+    int compare(const int* x, const int* y));
 
-/*--- 앞에서부터 n개 뒤의 노드를 가리키는 포인터 ---*/
-Node* Retrieve(List* list, int n);
+/*--- 앞에서부터 n개 뒤의 노드에 대한 커서 ---*/
+Index Retrieve(List* list, int n);
 
 /*--- 머리에 노드를 삽입 ---*/
 void InsertFront(List* list, const int* x);
@@ -58,7 +68,8 @@ void Print(const List* list);
 void Terminate(List* list);
 
 /*--- 노드 데이터 비교 함수  ---*/
-int Compare(const int *x,const int*y);
+int Compare(const int* x, const int* y);
+
 
 
 #endif

@@ -3,7 +3,7 @@
 #include "LinkedList.h"
 
 // 새 노드를 동적으로 할당하는 함수
-static Node* AllonNode(void)
+static Node* AllocNode(void)
 {
 	return (Node*)malloc(sizeof(Node));
 }
@@ -38,22 +38,11 @@ Node* Search(List* list, const int data, int compare(const int* x, const int* y)
 	return NULL;			 // 찾지 못하면 NULL
 }
 
-//리스트에서 n번째(0부터 시작) 노드의 포인터를 반환
-Node* Retrieve(List* list, int n)
-{
-	Node* ptr = list->head;
-	for (int i = 0; i < n && ptr !=NULL; i++)
-	{
-		ptr = ptr->nextnode;
-	}
-	return ptr;	 // n번째 노드(없으면 NULL)
-}
-
 // 리스트의 맨 앞에 새 노드를 삽입
 void InsertFront(List* list, const int* x)
 {
 	Node* ptr = list->head; // 기존 head 저장
-	list->head = list->crnt = AllonNode(); // 새 노드 생성
+	list->head = list->crnt = AllocNode(); // 새 노드 생성
 	SetNode(list->head, *x, ptr); // 새 노드를 head로, 다음 노드는 기존 head
 }
 
@@ -67,7 +56,7 @@ void InsertRear(List* list, const int* x)
 		Node* ptr = list->head;
 		while (ptr->nextnode != NULL)
 			ptr = ptr->nextnode; // 마지막 노드까지 이동
-		ptr->nextnode = list->crnt = AllonNode(); // 새 노드 연결
+		ptr->nextnode = list->crnt = AllocNode(); // 새 노드 연결
 		SetNode(ptr->nextnode, *x, NULL); // 새 노드에 값 저장, 다음 노드는 NULL
 	}
 }
